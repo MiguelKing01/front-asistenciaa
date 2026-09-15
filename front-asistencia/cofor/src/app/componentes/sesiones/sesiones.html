@@ -1,0 +1,121 @@
+<main class="sessions-page">
+  <aside class="sessions-menu" aria-label="Menú principal">
+    <a class="sessions-brand" href="#empresas">
+      UNI<span>TRACK</span>
+    </a>
+
+    <nav aria-label="Secciones de UNITRACK">
+      <button class="sessions-link" type="button">
+        Alumnos
+      </button>
+
+      <button class="sessions-link active" type="button">
+        Sesiones
+      </button>
+
+      <button class="sessions-link" type="button" routerLink="/asistencia">
+        Asistencia
+      </button>
+
+      <button class="sessions-link" type="button">
+        Entrega
+      </button>
+    </nav>
+
+    <button class="sessions-logout" type="button">
+      Cerrar sesión
+    </button>
+  </aside>
+
+  <section class="sessions-content" aria-labelledby="sessions-title">
+    <header class="sessions-header">
+      <section>
+        <p class="sessions-eyebrow">
+          Gestión de sesiones
+        </p>
+
+        <h1 id="sessions-title">
+          Sesiones
+        </h1>
+      </section>
+
+      <section class="sessions-account">
+        <span>KD</span>
+
+        <p>
+          <strong>Usuario</strong>
+          <small>Kellyn Delgado</small>
+        </p>
+      </section>
+    </header>
+
+    <section class="sessions-card">
+      <section class="sessions-toolbar">
+        <div>
+          <h2>Sesiones registradas</h2>
+
+          <p>
+            Consulta las sesiones creadas.
+          </p>
+        </div>
+
+        <button
+          class="btn btn-primary sessions-add"
+          type="button"
+          routerLink="/crear-sesion"
+        >
+          + Crear sesión
+        </button>
+      </section>
+
+      <section class="sessions-list">
+        <table class="sessions-table">
+          <thead>
+            <tr>
+              <th>Carrera</th>
+              <th>Materia</th>
+              <th>Promoción</th>
+              <th>Fecha</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>Ingeniería de software</td>
+              <td>Apps Móviles</td>
+              <td>16A</td>
+              <td>14/09/2026</td>
+              <td>
+                <button class="sessions-action sessions-action-edit" type="button">Editar</button>
+                <button class="sessions-action sessions-action-delete" type="button">Eliminar</button>
+              </td>
+            </tr>
+
+            <tr>
+              <td>Ingeniería de software</td>
+              <td>Software Design</td>
+              <td>16A</td>
+              <td>15/09/2026</td>
+              <td>
+                <button class="sessions-action sessions-action-edit" type="button">Editar</button>
+                <button class="sessions-action sessions-action-delete" type="button">Eliminar</button>
+              </td>
+            </tr>
+
+            <tr>
+              <td>Ingeniería industrial</td>
+              <td>Gestión de procesos</td>
+              <td>17A</td>
+              <td>16/09/2026</td>
+              <td>
+                <button class="sessions-action sessions-action-edit" type="button">Editar</button>
+                <button class="sessions-action sessions-action-delete" type="button">Eliminar</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </section>
+  </section>
+</main>
