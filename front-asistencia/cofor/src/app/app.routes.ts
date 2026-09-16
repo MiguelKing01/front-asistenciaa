@@ -5,6 +5,7 @@ import { Sesiones } from './componentes/sesiones/sesiones';
 import { Alumnos } from './componentes/alumnos/alumnos';
 import { Asistencia } from './componentes/asistencia/asistencia';
 import { CrearAsistencia } from './componentes/crear-asistencia/crear-asistencia';
+import { Registrarse } from './componentes/registrarse/registrarse';
 
 export const routes: Routes = [
     {
@@ -26,5 +27,9 @@ export const routes: Routes = [
     {
         path: 'crear-asistencia',
         component: CrearAsistencia
+    },
+    {
+        path: 'registrarse',
+        component: Registrarse
     }
 ];
