@@ -45,16 +45,27 @@
   width: 290px;
 }
 
+.logo{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+img {
+  width: 80px;
+  max-width: 75%;
+  margin: 10px 20px 0 20px;
+}
+
 .brand, .brand:hover { color: #fff; font-size: 1.75rem; font-weight: 700; letter-spacing: -1px; text-decoration: none; z-index: 1; }
-.university-logo { background: #fff; border-radius: 7px; max-width: 190px; padding: .35rem .55rem; position: relative; width: 100%; z-index: 1; }
 .brand span { color: var(--co-red); }
 .brand-message { max-width: 230px; z-index: 1; }
-.brand-message i { background: var(--co-red); display: block; height: 4px; margin-bottom: 1.1rem; width: 42px; }
+.brand-message i { background: var(--co-red); display: block; height: 4px; margin-bottom: 1.1rem; width: 45px; }
 .brand-message h1 { font-size: 1.8rem; font-weight: 700; letter-spacing: -.7px; line-height: 1.18; margin-bottom: .85rem; }
 .brand-message p, .auth-brand small { color: rgba(255,255,255,.78); line-height: 1.55; }
 .auth-brand small { font-size: .77rem; position: relative; z-index: 1; }
 
-.auth-form { display: flex; flex-direction: column; justify-content: center; padding: 3.5rem clamp(2.25rem, 7vw, 5rem); }
+.auth-form { display: flex;flex-direction: column; justify-content: center; padding: 3.5rem clamp(2.25rem, 7vw, 5rem); }
 .eyebrow { color: #758299; font-size: .75rem; font-weight: 700; letter-spacing: .09em; margin-bottom: .45rem; text-transform: uppercase; }
 .auth-form h2 { color: #1b315a; font-size: 1.8rem; font-weight: 700; letter-spacing: -.6px; margin-bottom: .4rem; }
 .intro { color: #718096; font-size: .94rem; margin-bottom: 1.85rem; }
@@ -78,3 +89,4 @@
 @keyframes appear { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 @media (max-width: 680px) { .auth-page { padding: 1rem; } .auth-panel { grid-template-columns: 1fr; } .auth-brand { min-height: 150px; padding: 1.8rem 2rem; } .university-logo { max-width: 155px; } .brand-message, .auth-brand small { display: none; } .auth-form { padding: 2.75rem 2rem; } }
 @media (prefers-reduced-motion: reduce) { .auth-panel, .login-button { animation: none; transition: none; } }
+ 

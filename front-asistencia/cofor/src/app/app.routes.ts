@@ -9,7 +9,7 @@ import { Registrarse } from './componentes/registrarse/registrarse';
 
 export const routes: Routes = [
     {
-        path: '',
+        path: 'auth',
         component: Auth
     },
     {

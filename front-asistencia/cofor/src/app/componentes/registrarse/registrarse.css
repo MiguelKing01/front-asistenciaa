@@ -50,15 +50,19 @@
   text-decoration: none;
   z-index: 1;
 }
-.university-logo {
-  background: #fff;
-  border-radius: 7px;
-  max-width: 190px;
-  padding: 0.35rem 0.55rem;
-  position: relative;
-  width: 100%;
-  z-index: 1;
+
+.logo{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
+
+img {
+  width: 80px;
+  max-width: 75%;
+  margin: 10px 20px 0 20px;
+}
+
 .brand span {
   color: var(--co-red);
 }

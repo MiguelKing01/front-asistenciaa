@@ -1,0 +1,76 @@
+.sessions-menu {
+  display: flex;
+  flex-direction: column;
+
+  padding: 2rem 1rem 1.35rem;
+
+  background: #ffffff;
+  border-right: 1px solid #e5eaf2;
+}
+
+.sessions-brand,
+.sessions-brand:hover {
+  margin: 0 0.75rem 3.5rem;
+
+  color: var(--blue);
+  font-size: 1.7rem;
+  font-weight: 700;
+  letter-spacing: -1px;
+  text-decoration: none;
+}
+
+.sessions-brand span {
+  color: var(--red);
+}
+
+.sessions-menu nav {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.sessions-link {
+  padding: 0.8rem 0.9rem;
+
+  background: transparent;
+  border: 0;
+  border-left: 3px solid transparent;
+
+  color: #647187;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: left;
+  text-decoration: none;
+
+  cursor: pointer;
+}
+
+.sessions-link:hover {
+  background: #f2f5fa;
+  color: var(--blue);
+}
+
+.sessions-link.active {
+  background: #fcebed;
+  border-left-color: var(--red);
+  color: var(--red);
+}
+
+.sessions-logout {
+  margin-top: auto;
+  padding: 1.15rem 0.9rem 0.35rem;
+
+  background: transparent;
+  border: 0;
+  border-top: 1px solid #e8edf4;
+
+  color: #68758a;
+  font-size: 0.86rem;
+  font-weight: 600;
+  text-align: left;
+
+  cursor: pointer;
+}
+
+.sessions-logout:hover {
+  color: var(--red);
+}
