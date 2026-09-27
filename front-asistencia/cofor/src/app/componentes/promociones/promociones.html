@@ -1,0 +1,124 @@
+<main class="promotions-page">
+  <aside class="side-menu" aria-label="Menú principal">
+    <a class="side-brand" href="#promociones">UNI<span>TRACK</span></a>
+    <nav aria-label="Secciones de UNITRACK">
+      <button class="menu-link" type="button" routerLink="/sesiones">Sesiones</button>
+      <button class="menu-link" type="button" routerLink="/grupos">Grupos</button>
+      <button class="menu-link active" type="button">Promociones</button>
+    </nav>
+    <button class="logout-button" type="button">Cerrar sesión</button>
+  </aside>
+
+  <section class="promotions-content" aria-labelledby="promotions-title">
+    <header class="content-header">
+      <section>
+        <p class="eyebrow">Gestión académica</p>
+        <h1 id="promotions-title">Promociones</h1>
+      </section>
+      <section class="account">
+        <span class="account-avatar">UC</span>
+        <span>
+          <strong>Usuario UNITRACK</strong>
+          <small>Administrador</small>
+        </span>
+      </section>
+    </header>
+
+    @if (creating()) {
+      <form class="edit-form" (submit)="createPromocion(name.value, programs.value); $event.preventDefault()">
+        <section class="form-title">
+          <h2>Agregar promoción</h2>
+          <p>Registra la información de la nueva promoción.</p>
+        </section>
+        <label class="form-label" for="new-name">Nombre de la promoción</label>
+        <input #name id="new-name" class="form-control" placeholder="Ej. 2026-A" required>
+        <label class="form-label" for="new-programs">ID Programa</label>
+        <input #programs id="new-programs" class="form-control" type="number" placeholder="ID del programa" required>
+        <section class="form-actions">
+          <button class="btn btn-outline-secondary" type="button" (click)="cancelCreate()">Cancelar</button>
+          <button class="btn btn-primary add-button" type="submit">Agregar promoción</button>
+        </section>
+      </form>
+    } @else if (editingId(); as editId) {
+      @for (promo of promociones(); track promo.promotion_id) {
+        @if (promo.promotion_id === editId) {
+          <form class="edit-form" (submit)="savePromocion(promo.promotion_id, name.value, programs.value); $event.preventDefault()">
+            <section class="form-title">
+              <h2>Editar promoción</h2>
+              <p>Actualiza la información de la promoción seleccionada.</p>
+            </section>
+            <label class="form-label" for="edit-name">Nombre de la promoción</label>
+            <input #name id="edit-name" class="form-control" [value]="promo.promotion_name" required>
+            <label class="form-label" for="edit-programs">ID Programa</label>
+            <input #programs id="edit-programs" class="form-control" type="number" [value]="promo.id_programs" required>
+            <section class="form-actions">
+              <button class="btn btn-outline-secondary" type="button" (click)="cancelEdit()">Cancelar</button>
+              <button class="btn btn-primary add-button" type="submit">Guardar cambios</button>
+            </section>
+          </form>
+        }
+      }
+    } @else {
+      <section class="promotions-toolbar">
+        <label class="search-field" for="promotion-search">
+          <span class="visually-hidden">Buscar promoción</span>
+          <input id="promotion-search" class="form-control" type="search" placeholder="Buscar por nombre o programa" (input)="onSearch($any($event.target).value)">
+        </label>
+        <button class="btn btn-primary add-button" type="button" (click)="addPromocion()">Agregar promoción</button>
+      </section>
+
+      @if (selectedId() !== null) {
+        <section class="selected-actions">
+          <span>Promoción seleccionada</span>
+          <section>
+            <button class="btn btn-outline-primary btn-sm" type="button" (click)="editSelected()">Editar</button>
+            <button class="btn btn-outline-danger btn-sm" type="button" (click)="deleteSelected()">Eliminar</button>
+          </section>
+        </section>
+      }
+
+      @if (confirmingDelete()) {
+        <section class="delete-confirm" role="alert">
+          <span>¿Seguro que deseas eliminar esta promoción?</span>
+          <section>
+            <button class="btn btn-sm btn-outline-secondary" type="button" (click)="cancelDelete()">Cancelar</button>
+            <button class="btn btn-sm btn-danger" type="button" (click)="confirmDelete()">Sí, eliminar</button>
+          </section>
+        </section>
+      }
+
+      @if (actionMessage()) {
+        <p class="action-message" role="status">{{ actionMessage() }}</p>
+      }
+
+      <section class="promotions-list" aria-label="Lista de promociones">
+        <table class="promotions-table">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>ID Programa</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (promo of filteredPromociones(); track promo.promotion_id) {
+              <tr
+                class="promotion-row"
+                [class.selected]="selectedId() === promo.promotion_id"
+                (click)="selectPromocion(promo.promotion_id)"
+              >
+                <td>
+                  <span class="promotion-badge">{{ promo.promotion_name }}</span>
+                </td>
+                <td>{{ promo.id_programs }}</td>
+              </tr>
+            } @empty {
+              <tr>
+                <td colspan="2" class="empty-state">No se encontraron promociones con esos criterios.</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </section>
+    }
+  </section>
+</main>

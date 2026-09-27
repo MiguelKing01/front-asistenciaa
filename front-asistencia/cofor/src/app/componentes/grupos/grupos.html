@@ -1,0 +1,136 @@
+<main class="groups-page">
+  <aside class="side-menu" aria-label="Menú principal">
+    <a class="side-brand" href="#grupos">UNI<span>TRACK</span></a>
+    <nav aria-label="Secciones de UNITRACK">
+      <button class="menu-link" type="button" routerLink="/sesiones">Sesiones</button>
+      <button class="menu-link active" type="button">Grupos</button>
+      <button class="menu-link" type="button" routerLink="/promociones">Promociones</button>
+    </nav>
+    <button class="logout-button" type="button">Cerrar sesión</button>
+  </aside>
+
+  <section class="groups-content" aria-labelledby="groups-title">
+    <header class="content-header">
+      <section>
+        <p class="eyebrow">Gestión académica</p>
+        <h1 id="groups-title">Grupos</h1>
+      </section>
+      <section class="account">
+        <span class="account-avatar">UC</span>
+        <span>
+          <strong>Usuario UNITRACK</strong>
+          <small>Administrador</small>
+        </span>
+      </section>
+    </header>
+
+    @if (creating()) {
+      <form class="edit-form" (submit)="createGrupo(code.value, subjects.value, promotion.value, programs.value); $event.preventDefault()">
+        <section class="form-title">
+          <h2>Agregar grupo</h2>
+          <p>Registra la información del nuevo grupo.</p>
+        </section>
+        <label class="form-label" for="new-code">Código de acceso</label>
+        <input #code id="new-code" class="form-control" placeholder="Ej. GRP-2026-A" required>
+        <label class="form-label" for="new-subjects">ID Materia</label>
+        <input #subjects id="new-subjects" class="form-control" type="number" placeholder="ID de la materia" required>
+        <label class="form-label" for="new-promotion">ID Promoción</label>
+        <input #promotion id="new-promotion" class="form-control" type="number" placeholder="ID de la promoción" required>
+        <label class="form-label" for="new-programs">ID Programa</label>
+        <input #programs id="new-programs" class="form-control" type="number" placeholder="ID del programa" required>
+        <section class="form-actions">
+          <button class="btn btn-outline-secondary" type="button" (click)="cancelCreate()">Cancelar</button>
+          <button class="btn btn-primary add-button" type="submit">Agregar grupo</button>
+        </section>
+      </form>
+    } @else if (editingId(); as editId) {
+      @for (grupo of grupos(); track grupo.group_id) {
+        @if (grupo.group_id === editId) {
+          <form class="edit-form" (submit)="saveGrupo(grupo.group_id, code.value, subjects.value, promotion.value, programs.value); $event.preventDefault()">
+            <section class="form-title">
+              <h2>Editar grupo</h2>
+              <p>Actualiza la información del grupo seleccionado.</p>
+            </section>
+            <label class="form-label" for="edit-code">Código de acceso</label>
+            <input #code id="edit-code" class="form-control" [value]="grupo.group_acces_code" required>
+            <label class="form-label" for="edit-subjects">ID Materia</label>
+            <input #subjects id="edit-subjects" class="form-control" type="number" [value]="grupo.id_subjects" required>
+            <label class="form-label" for="edit-promotion">ID Promoción</label>
+            <input #promotion id="edit-promotion" class="form-control" type="number" [value]="grupo.id_promotion" required>
+            <label class="form-label" for="edit-programs">ID Programa</label>
+            <input #programs id="edit-programs" class="form-control" type="number" [value]="grupo.id_programs" required>
+            <section class="form-actions">
+              <button class="btn btn-outline-secondary" type="button" (click)="cancelEdit()">Cancelar</button>
+              <button class="btn btn-primary add-button" type="submit">Guardar cambios</button>
+            </section>
+          </form>
+        }
+      }
+    } @else {
+      <section class="groups-toolbar">
+        <label class="search-field" for="group-search">
+          <span class="visually-hidden">Buscar grupo</span>
+          <input id="group-search" class="form-control" type="search" placeholder="Buscar por código, materia o programa" (input)="onSearch($any($event.target).value)">
+        </label>
+        <button class="btn btn-primary add-button" type="button" (click)="addGrupo()">Agregar grupo</button>
+      </section>
+
+      @if (selectedId() !== null) {
+        <section class="selected-actions">
+          <span>Grupo seleccionado</span>
+          <section>
+            <button class="btn btn-outline-primary btn-sm" type="button" (click)="editSelected()">Editar</button>
+            <button class="btn btn-outline-danger btn-sm" type="button" (click)="deleteSelected()">Eliminar</button>
+          </section>
+        </section>
+      }
+
+      @if (confirmingDelete()) {
+        <section class="delete-confirm" role="alert">
+          <span>¿Seguro que deseas eliminar este grupo?</span>
+          <section>
+            <button class="btn btn-sm btn-outline-secondary" type="button" (click)="cancelDelete()">Cancelar</button>
+            <button class="btn btn-sm btn-danger" type="button" (click)="confirmDelete()">Sí, eliminar</button>
+          </section>
+        </section>
+      }
+
+      @if (actionMessage()) {
+        <p class="action-message" role="status">{{ actionMessage() }}</p>
+      }
+
+      <section class="groups-list" aria-label="Lista de grupos">
+        <table class="groups-table">
+          <thead>
+            <tr>
+              <th>Código de acceso</th>
+              <th>ID Materia</th>
+              <th>ID Promoción</th>
+              <th>ID Programa</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (grupo of filteredGroups(); track grupo.group_id) {
+              <tr
+                class="group-row"
+                [class.selected]="selectedId() === grupo.group_id"
+                (click)="selectGrupo(grupo.group_id)"
+              >
+                <td>
+                  <span class="group-badge">{{ grupo.group_acces_code }}</span>
+                </td>
+                <td>{{ grupo.id_subjects }}</td>
+                <td>{{ grupo.id_promotion }}</td>
+                <td>{{ grupo.id_programs }}</td>
+              </tr>
+            } @empty {
+              <tr>
+                <td colspan="4" class="empty-state">No se encontraron grupos con esos criterios.</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </section>
+    }
+  </section>
+</main>

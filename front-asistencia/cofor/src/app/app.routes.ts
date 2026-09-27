@@ -6,6 +6,8 @@ import { Alumnos } from './componentes/alumnos/alumnos';
 import { Asistencia } from './componentes/asistencia/asistencia';
 import { CrearAsistencia } from './componentes/crear-asistencia/crear-asistencia';
 import { Registrarse } from './componentes/registrarse/registrarse';
+import { Grupos } from './componentes/grupos/grupos';
+import { Promociones } from './componentes/promociones/promociones';
 
 export const routes: Routes = [
     {
@@ -14,14 +16,14 @@ export const routes: Routes = [
     },
     {
         path: 'sesiones',
-        component:Sesiones
+        component: Sesiones
     },
     {
         path: 'crear-sesion',
         component: CrearSesion
     },
     {
-        path:'asistencia',
+        path: 'asistencia',
         component: Asistencia
     },
     {
@@ -31,5 +33,13 @@ export const routes: Routes = [
     {
         path: 'registrarse',
         component: Registrarse
+    },
+    {
+        path: 'grupos',
+        component: Grupos
+    },
+    {
+        path: 'promociones',
+        component: Promociones
     }
 ];
