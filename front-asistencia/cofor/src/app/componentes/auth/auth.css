@@ -45,16 +45,11 @@
   width: 290px;
 }
 
-.logo{
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
 
 img {
-  width: 80px;
-  max-width: 75%;
-  margin: 10px 20px 0 20px;
+  width: 500px;
+  max-width: 105%;
+  margin: 10px 20px 5px -10px;
 }
 
 .brand, .brand:hover { color: #fff; font-size: 1.75rem; font-weight: 700; letter-spacing: -1px; text-decoration: none; z-index: 1; }
