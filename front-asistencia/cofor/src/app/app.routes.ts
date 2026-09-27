@@ -11,6 +11,10 @@ import { Promociones } from './componentes/promociones/promociones';
 
 export const routes: Routes = [
     {
+        path: '',
+        component: Auth
+    },
+    {
         path: 'auth',
         component: Auth
     },
