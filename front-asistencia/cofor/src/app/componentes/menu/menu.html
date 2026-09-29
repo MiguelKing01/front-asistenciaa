@@ -1,6 +1,12 @@
-<aside class="side-menu" aria-label="Menú principal">
-  <img src="LogoUniempresarialAR.png" alt="Uniempresarial">
-  <nav aria-label="Secciones de UNITRACK">
+<aside class="side-menu" [class.is-collapsed]="isCollapsed" [class.is-mobile-open]="isMobileMenuOpen" aria-label="Menú principal">
+  <div class="menu-header">
+    <img class="menu-logo menu-logo-expanded" src="LogoUniempresarialAR.png" alt="Uniempresarial">
+    <img class="menu-logo menu-logo-compact" src="logo-ue.png" alt="Uniempresarial">
+    <button type="button" class="mobile-menu-toggle" (click)="toggleMobileMenu()" [attr.aria-expanded]="isMobileMenuOpen" aria-controls="primary-navigation" [attr.aria-label]="isMobileMenuOpen ? 'Cerrar menú de navegación' : 'Abrir menú de navegación'">
+      <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+    </button>
+  </div>
+  <nav id="primary-navigation" aria-label="Secciones de UNITRACK" (click)="closeMobileMenu()">
     @if (esAdmin() || esDocente()) {
       <button class="menu-link" type="button" routerLink="/usuarios">Usuarios</button>
       <button class="menu-link" type="button" routerLink="/grupos">Grupos</button>
@@ -15,4 +21,7 @@
     }
   </nav>
   <button class="logout-button" type="button" (click)="logout()">Cerrar sesión</button>
+  <button type="button" class="desktop-collapse-toggle" (click)="toggleCollapsed()" [attr.aria-label]="isCollapsed ? 'Expandir menú lateral' : 'Contraer menú lateral'" [attr.aria-pressed]="isCollapsed">
+    <span aria-hidden="true">{{ isCollapsed ? '›' : '‹' }}</span>
+  </button>
 </aside>

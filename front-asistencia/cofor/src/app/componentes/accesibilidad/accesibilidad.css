@@ -1,0 +1,131 @@
+:host {
+  position: fixed;
+  z-index: 1100;
+  right: 0.75rem;
+  bottom: 4rem;
+  font-size: 1rem;
+}
+
+.accessibility-widget {
+  display: flex;
+  align-items: center;
+}
+
+.accessibility-panel {
+  width: 15.5rem;
+  padding: 1rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.75rem 0 0 0.75rem;
+  background: #ffffff;
+  box-shadow: 0 0.5rem 1.5rem rgb(15 23 42 / 20%);
+}
+
+.panel-heading {
+  display: flex;
+  gap: 0.65rem;
+  align-items: center;
+  margin-bottom: 0.9rem;
+  color: #0f172a;
+}
+
+.panel-heading strong,
+.font-status {
+  display: block;
+}
+
+.font-status {
+  margin-top: 0.15rem;
+  font-size: 0.8rem;
+}
+
+.accessibility-icon {
+  font-size: 1.6rem;
+}
+
+.font-controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  margin-bottom: 0.65rem;
+}
+
+button {
+  min-height: 2.75rem;
+  border: 0;
+  border-radius: 0.45rem;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button:focus-visible {
+  outline: 3px solid #f59e0b;
+  outline-offset: 3px;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.option-button,
+.contrast-button {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+.contrast-button {
+  width: 100%;
+  margin-bottom: 0.55rem;
+}
+
+.contrast-button span {
+  margin-right: 0.35rem;
+}
+
+.reset-button {
+  width: 100%;
+  min-height: auto;
+  padding: 0.35rem;
+  background: transparent;
+  color: #334155;
+  text-decoration: underline;
+}
+
+.toggle-button {
+  display: grid;
+  width: 3.4rem;
+  height: 3.4rem;
+  min-height: 3.4rem;
+  padding: 0;
+  place-items: center;
+  border-radius: 50%;
+  background: #006fce;
+  color: #ffffff;
+  box-shadow: 0 0.3rem 0.75rem rgb(15 23 42 / 25%);
+}
+
+.toggle-button:hover {
+  background: #005fb1;
+}
+
+.toggle-icon {
+  width: 1.75rem;
+  height: 1.75rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.close-icon {
+  font-size: 2.15rem;
+  font-weight: 300;
+  line-height: 1;
+}
+
+@media (max-width: 480px) {
+  :host { bottom: 1.25rem; }
+  .accessibility-panel { width: min(15.5rem, calc(100vw - 4rem)); }
+}

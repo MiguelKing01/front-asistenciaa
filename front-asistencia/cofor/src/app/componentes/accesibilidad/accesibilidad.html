@@ -1,0 +1,60 @@
+<section class="accessibility-widget" aria-label="Herramientas de accesibilidad">
+  @if (isOpen) {
+    <div id="accessibility-panel" class="accessibility-panel" role="region" aria-label="Opciones de accesibilidad">
+      <div class="panel-heading">
+        <span aria-hidden="true" class="accessibility-icon">♿</span>
+        <div>
+          <strong>Accesibilidad</strong>
+          <span class="font-status">Texto: {{ fontScale }}%</span>
+        </div>
+      </div>
+
+      <div class="font-controls" aria-label="Tamaño del texto">
+        <button
+          type="button"
+          class="option-button"
+          (click)="changeFontSize(-1)"
+          [disabled]="fontScale === minimumScale"
+          aria-label="Disminuir tamaño del texto">
+          A−
+        </button>
+        <button
+          type="button"
+          class="option-button"
+          (click)="changeFontSize(1)"
+          [disabled]="fontScale === maximumScale"
+          aria-label="Aumentar tamaño del texto">
+          A+
+        </button>
+      </div>
+
+      <button
+        type="button"
+        class="contrast-button"
+        (click)="toggleContrast()"
+        [attr.aria-pressed]="highContrast">
+        <span aria-hidden="true">◐</span>
+        {{ highContrast ? 'Contraste normal' : 'Alto contraste' }}
+      </button>
+
+      <button type="button" class="reset-button" (click)="reset()">Restablecer</button>
+    </div>
+  }
+
+  <button
+    type="button"
+    class="toggle-button"
+    (click)="togglePanel()"
+    [attr.aria-expanded]="isOpen"
+    aria-controls="accessibility-panel"
+    [attr.aria-label]="isOpen ? 'Ocultar opciones de accesibilidad' : 'Mostrar opciones de accesibilidad'">
+    @if (isOpen) {
+      <span aria-hidden="true" class="close-icon">×</span>
+    } @else {
+      <svg class="toggle-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <circle cx="12" cy="4.5" r="2"></circle>
+        <path d="M4 8.5h16M12 7v13M8 20l4-6 4 6M8 8.5l-3 6M16 8.5l3 6"></path>
+      </svg>
+    }
+  </button>
+</section>

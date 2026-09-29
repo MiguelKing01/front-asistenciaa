@@ -5,7 +5,90 @@ body {
   min-height: 100%;
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+img,
+svg,
+video,
+canvas {
+  height: auto;
+  max-width: 100%;
+}
+
+input,
+select,
+textarea,
+button {
+  max-width: 100%;
+}
+
+@media (min-width: 761px) {
+  main.menu-collapsed {
+    grid-template-columns: 4.5rem minmax(0, 1fr) !important;
+  }
+}
+
+@media (max-width: 680px) {
+  body .auth-brand img {
+    margin: 0;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 760px) {
+  /* Cada contenedor que tenga una tabla se convierte en su área de desplazamiento.
+     Así la tabla puede conservar sus columnas sin ensanchar la página completa. */
+  main :has(> table) {
+    max-width: 100%;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  main :has(> table) > table {
+    min-width: max-content;
+    width: 100%;
+  }
+
+  main :has(> table) th,
+  main :has(> table) td {
+    white-space: nowrap;
+  }
+}
+
+/* La clase se asigna desde el único componente global de accesibilidad. */
+body.high-contrast {
+  background: #000000 !important;
+  color: #ffffff !important;
+}
+
+body.high-contrast :where(main, section, article, header, footer, nav, aside, div, form, table, th, td, p, h1, h2, h3, h4, h5, h6, label, span, li) {
+  background-color: #000000;
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+
+body.high-contrast :where(a, a:visited) {
+  color: #ffff00 !important;
+  text-decoration: underline !important;
+}
+
+body.high-contrast :where(button, input, select, textarea) {
+  background: #000000 !important;
+  color: #ffffff !important;
+  border: 2px solid #ffffff !important;
+}
+
+body.high-contrast :where(img, svg) {
+  filter: grayscale(1) contrast(1.2);
 }
