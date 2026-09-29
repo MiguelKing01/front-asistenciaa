@@ -8,76 +8,6 @@
   min-height: 100vh;
 }
 
-/* ── Side menu (idéntico al de alumnos / sesiones) ─────────────── */
-.side-menu {
-  background: #fff;
-  border-right: 1px solid #e5eaf2;
-  display: flex;
-  flex-direction: column;
-  padding: 2rem 1rem 1.35rem;
-}
-
-.side-brand,
-.side-brand:hover {
-  color: var(--co-blue);
-  font-size: 1.7rem;
-  font-weight: 700;
-  letter-spacing: -1px;
-  margin: 0 0.75rem 3.5rem;
-  text-decoration: none;
-}
-
-.side-brand span {
-  color: var(--co-red);
-}
-
-.side-menu nav {
-  display: grid;
-  gap: 0.35rem;
-}
-
-.menu-link {
-  background: transparent;
-  border: 0;
-  border-left: 3px solid transparent;
-  color: #647187;
-  font-size: 0.9rem;
-  font-weight: 600;
-  padding: 0.8rem 0.9rem;
-  text-align: left;
-  text-decoration: none;
-  transition: 0.2s;
-  cursor: pointer;
-}
-
-.menu-link:hover {
-  background: #f2f5fa;
-  color: var(--co-blue);
-}
-
-.menu-link.active {
-  background: #fcebed;
-  border-left-color: var(--co-red);
-  color: var(--co-red);
-}
-
-.logout-button {
-  background: transparent;
-  border: 0;
-  border-top: 1px solid #e8edf4;
-  color: #68758a;
-  font-size: 0.86rem;
-  font-weight: 600;
-  margin-top: auto;
-  padding: 1.15rem 0.9rem 0.35rem;
-  text-align: left;
-  cursor: pointer;
-}
-
-.logout-button:hover {
-  color: var(--co-red);
-}
-
 /* ── Main content ───────────────────────────────────────────────── */
 .groups-content {
   margin: 0 auto;
@@ -358,53 +288,10 @@
     grid-template-columns: 1fr;
   }
 
-  .side-menu {
-    border-bottom: 1px solid #e5eaf2;
-    border-right: 0;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 1rem;
-    padding: 1.1rem;
-  }
-
-  .side-brand {
-    margin: 0 auto 0 0;
-  }
-
-  .side-menu nav {
-    display: flex;
-    order: 3;
-    overflow-x: auto;
-    width: 100%;
-  }
-
-  .menu-link {
-    border-bottom: 3px solid transparent;
-    border-left: 0;
-    white-space: nowrap;
-  }
-
-  .menu-link.active {
-    border-bottom-color: var(--co-red);
-  }
-
-  .logout-button {
-    border: 0;
-    margin: 0;
-    padding: 0.4rem;
-  }
-
   .groups-content {
     padding-top: 1.7rem;
   }
 
-  .groups-list {
-    overflow-x: auto;
-  }
-
-  .groups-table {
-    min-width: 600px;
-  }
 }
 
 @media (max-width: 560px) {
@@ -435,7 +322,6 @@
 
 @media (prefers-reduced-motion: reduce) {
   .group-row,
-  .menu-link,
   .selected-actions {
     animation: none;
     transition: none;
@@ -580,4 +466,71 @@
   .groups-table td:nth-child(2)::before { content: 'Materia'; }
   .groups-table td:nth-child(3)::before { content: 'Promoción'; }
   .groups-table td:nth-child(4)::before { content: 'Programa'; }
+}
+
+.groups-list {
+  background: transparent;
+  border: 0;
+  overflow: visible;
+}
+
+.groups-cards {
+  display: grid;
+  gap: 0.9rem;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+}
+
+.group-card {
+  background: #fff;
+  border: 1px solid #e1e7f0;
+  border-radius: 0.75rem;
+  color: #28364e;
+  cursor: pointer;
+  display: grid;
+  gap: 0.8rem;
+  padding: 1.15rem;
+  text-align: left;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+  width: 100%;
+}
+
+.group-card:hover {
+  border-color: #9ebae7;
+  box-shadow: 0 0.35rem 1rem rgb(21 63 135 / 10%);
+  transform: translateY(-2px);
+}
+
+.group-card:focus-visible {
+  outline: 3px solid #f59e0b;
+  outline-offset: 3px;
+}
+
+.group-card.selected {
+  border-color: var(--co-blue);
+  box-shadow: inset 3px 0 0 var(--co-blue);
+}
+
+.group-card-detail {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.group-card-detail > span {
+  color: #718096;
+  font-size: 0.73rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.group-card-detail strong {
+  color: #28364e;
+  font-size: 0.92rem;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 560px) {
+  .groups-cards { grid-template-columns: 1fr; }
+  .group-card { padding: 1rem; }
 }

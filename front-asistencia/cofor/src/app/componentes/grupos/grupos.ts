@@ -5,9 +5,9 @@ import { Menu } from '../menu/menu';
 interface Group {
   group_id: number;
   group_acces_code: string;
-  id_subjects: number;
-  id_promotion: number;
-  id_programs: number;
+  subjectName: string;
+  promotionName: string;
+  programName: string;
 }
 
 @Component({
@@ -18,11 +18,11 @@ interface Group {
 })
 export class Grupos {
   protected readonly grupos = signal<Group[]>([
-    { group_id: 1, group_acces_code: 'GRP-2024-A', id_subjects: 1, id_promotion: 1, id_programs: 1 },
-    { group_id: 2, group_acces_code: 'GRP-2024-B', id_subjects: 2, id_promotion: 1, id_programs: 1 },
-    { group_id: 3, group_acces_code: 'GRP-2025-A', id_subjects: 3, id_promotion: 2, id_programs: 2 },
-    { group_id: 4, group_acces_code: 'GRP-2025-B', id_subjects: 1, id_promotion: 2, id_programs: 3 },
-    { group_id: 5, group_acces_code: 'GRP-2026-A', id_subjects: 4, id_promotion: 3, id_programs: 2 },
+    { group_id: 1, group_acces_code: 'GRP-2024-A', subjectName: 'Aplicaciones híbridas', promotionName: '16A', programName: 'Ingeniería de software' },
+    { group_id: 2, group_acces_code: 'GRP-2024-B', subjectName: 'Bases de datos', promotionName: '16B', programName: 'Ingeniería de software' },
+    { group_id: 3, group_acces_code: 'GRP-2025-A', subjectName: 'Marketing digital', promotionName: '13A', programName: 'Administración de empresas' },
+    { group_id: 4, group_acces_code: 'GRP-2025-B', subjectName: 'Gestión de proyectos', promotionName: '13B', programName: 'Administración de empresas' },
+    { group_id: 5, group_acces_code: 'GRP-2026-A', subjectName: 'Desarrollo web', promotionName: '16A', programName: 'Ingeniería de software' },
   ]);
 
   protected readonly search = signal('');
@@ -36,7 +36,7 @@ export class Grupos {
   protected readonly filteredGroups = computed(() => {
     const term = this.search().trim().toLowerCase();
     return this.grupos().filter((g) =>
-      `${g.group_acces_code} ${g.id_subjects} ${g.id_promotion} ${g.id_programs}`
+      `${g.group_acces_code} ${g.subjectName} ${g.promotionName} ${g.programName}`
         .toLowerCase()
         .includes(term),
     );
@@ -68,27 +68,27 @@ export class Grupos {
   protected cancelEdit(): void { this.editingId.set(null); }
   protected cancelCreate(): void { this.creating.set(false); }
 
-  protected createGrupo(code: string, subjects: string, promotion: string, programs: string): void {
+  protected createGrupo(code: string, subjectName: string, promotionName: string, programName: string): void {
     const id = Math.max(0, ...this.grupos().map((g) => g.group_id)) + 1;
     this.grupos.update((gs) => [
       ...gs,
       {
         group_id: id,
         group_acces_code: code,
-        id_subjects: Number(subjects),
-        id_promotion: Number(promotion),
-        id_programs: Number(programs),
+        subjectName,
+        promotionName,
+        programName,
       },
     ]);
     this.creating.set(false);
     this.actionMessage.set('Grupo creado correctamente.');
   }
 
-  protected saveGrupo(id: number, code: string, subjects: string, promotion: string, programs: string): void {
+  protected saveGrupo(id: number, code: string, subjectName: string, promotionName: string, programName: string): void {
     this.grupos.update((gs) =>
       gs.map((g) =>
         g.group_id === id
-          ? { ...g, group_acces_code: code, id_subjects: Number(subjects), id_promotion: Number(promotion), id_programs: Number(programs) }
+          ? { ...g, group_acces_code: code, subjectName, promotionName, programName }
           : g,
       ),
     );

@@ -24,12 +24,12 @@
         </section>
         <label class="form-label" for="new-code">Código de acceso</label>
         <input #code id="new-code" class="form-control" placeholder="Ej. GRP-2026-A" required>
-        <label class="form-label" for="new-subjects">ID Materia</label>
-        <input #subjects id="new-subjects" class="form-control" type="number" placeholder="ID de la materia" required>
-        <label class="form-label" for="new-promotion">ID Promoción</label>
-        <input #promotion id="new-promotion" class="form-control" type="number" placeholder="ID de la promoción" required>
-        <label class="form-label" for="new-programs">ID Programa</label>
-        <input #programs id="new-programs" class="form-control" type="number" placeholder="ID del programa" required>
+        <label class="form-label" for="new-subjects">Materia</label>
+        <input #subjects id="new-subjects" class="form-control" placeholder="Ej. Aplicaciones híbridas" required>
+        <label class="form-label" for="new-promotion">Promoción</label>
+        <input #promotion id="new-promotion" class="form-control" placeholder="Ej. 16A" required>
+        <label class="form-label" for="new-programs">Programa</label>
+        <input #programs id="new-programs" class="form-control" placeholder="Ej. Ingeniería de software" required>
         <section class="form-actions">
           <button class="btn btn-outline-secondary" type="button" (click)="cancelCreate()">Cancelar</button>
           <button class="btn btn-primary add-button" type="submit">Agregar grupo</button>
@@ -45,12 +45,12 @@
             </section>
             <label class="form-label" for="edit-code">Código de acceso</label>
             <input #code id="edit-code" class="form-control" [value]="grupo.group_acces_code" required>
-            <label class="form-label" for="edit-subjects">ID Materia</label>
-            <input #subjects id="edit-subjects" class="form-control" type="number" [value]="grupo.id_subjects" required>
-            <label class="form-label" for="edit-promotion">ID Promoción</label>
-            <input #promotion id="edit-promotion" class="form-control" type="number" [value]="grupo.id_promotion" required>
-            <label class="form-label" for="edit-programs">ID Programa</label>
-            <input #programs id="edit-programs" class="form-control" type="number" [value]="grupo.id_programs" required>
+            <label class="form-label" for="edit-subjects">Materia</label>
+            <input #subjects id="edit-subjects" class="form-control" [value]="grupo.subjectName" required>
+            <label class="form-label" for="edit-promotion">Promoción</label>
+            <input #promotion id="edit-promotion" class="form-control" [value]="grupo.promotionName" required>
+            <label class="form-label" for="edit-programs">Programa</label>
+            <input #programs id="edit-programs" class="form-control" [value]="grupo.programName" required>
             <section class="form-actions">
               <button class="btn btn-outline-secondary" type="button" (click)="cancelEdit()">Cancelar</button>
               <button class="btn btn-primary add-button" type="submit">Guardar cambios</button>
@@ -93,36 +93,18 @@
       }
 
       <section class="groups-list" aria-label="Lista de grupos">
-        <table class="groups-table">
-          <thead>
-            <tr>
-              <th>Código de acceso</th>
-              <th>ID Materia</th>
-              <th>ID Promoción</th>
-              <th>ID Programa</th>
-            </tr>
-          </thead>
-          <tbody>
-            @for (grupo of filteredGroups(); track grupo.group_id) {
-              <tr
-                class="group-row"
-                [class.selected]="selectedId() === grupo.group_id"
-                (click)="selectGrupo(grupo.group_id)"
-              >
-                <td>
-                  <span class="group-badge">{{ grupo.group_acces_code }}</span>
-                </td>
-                <td>{{ grupo.id_subjects }}</td>
-                <td>{{ grupo.id_promotion }}</td>
-                <td>{{ grupo.id_programs }}</td>
-              </tr>
-            } @empty {
-              <tr>
-                <td colspan="4" class="empty-state">No se encontraron grupos con esos criterios.</td>
-              </tr>
-            }
-          </tbody>
-        </table>
+        <div class="groups-cards">
+          @for (grupo of filteredGroups(); track grupo.group_id) {
+            <button type="button" class="group-card" [class.selected]="selectedId() === grupo.group_id" (click)="selectGrupo(grupo.group_id)">
+              <span class="group-badge">{{ grupo.group_acces_code }}</span>
+              <span class="group-card-detail"><span>Materia</span><strong>{{ grupo.subjectName }}</strong></span>
+              <span class="group-card-detail"><span>Promoción</span><strong>{{ grupo.promotionName }}</strong></span>
+              <span class="group-card-detail"><span>Programa</span><strong>{{ grupo.programName }}</strong></span>
+            </button>
+          } @empty {
+            <p class="empty-state">No se encontraron grupos con esos criterios.</p>
+          }
+        </div>
       </section>
     }
 
