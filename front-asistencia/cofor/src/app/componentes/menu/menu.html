@@ -1,27 +1,18 @@
-<aside class="sessions-menu" aria-label="Menú principal">
-    <a class="sessions-brand" href="#empresas">
-      UNI<span>TRACK</span>
-    </a>
-
-    <nav aria-label="Secciones de UNITRACK">
-      <button class="sessions-link" type="button">
-        Alumnos
-      </button>
-
-      <button class="sessions-link" type="button" routerLink="/sesiones">
-        Sesiones
-      </button>
-
-      <button class="sessions-link active" type="button">
-        Asistencia
-      </button>
-
-      <button class="sessions-link" type="button">
-        Entrega
-      </button>
-    </nav>
-
-    <button class="sessions-logout" type="button">
-      Cerrar sesión
-    </button>
+<aside class="side-menu" aria-label="Menú principal">
+  <a class="side-brand" href="#">UNI<span>TRACK</span></a>
+  <nav aria-label="Secciones de UNITRACK">
+    @if (esAdmin()) {
+      <button class="menu-link" type="button" routerLink="/alumnos-crud">Alumnos</button>
+      <button class="menu-link" type="button" routerLink="/grupos">Grupos</button>
+      <button class="menu-link" type="button" routerLink="/promociones">Promociones</button>
+    }
+    @if (esDocente()) {
+      <button class="menu-link" type="button" routerLink="/sesiones">Sesiones</button>
+      <button class="menu-link" type="button" routerLink="/asistencia">Asistencia</button>
+    }
+    @if (esAlumno()) {
+      <button class="menu-link" type="button" routerLink="/alumnos">Mis Grupos</button>
+    }
+  </nav>
+  <button class="logout-button" type="button" (click)="logout()">Cerrar sesión</button>
 </aside>

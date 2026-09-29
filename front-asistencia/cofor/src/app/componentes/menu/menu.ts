@@ -1,11 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-menu',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './menu.html',
   styleUrl: './menu.css',
 })
 export class Menu {
+  private readonly authService = inject(AuthService);
+  private readonly router = inject(Router);
 
+  protected readonly esAdmin = this.authService.esAdmin;
+  protected readonly esDocente = this.authService.esDocente;
+  protected readonly esAlumno = this.authService.esAlumno;
+
+  protected logout(): void {
+    this.authService.logout();
+    this.router.navigate(['/auth']);
+  }
 }
