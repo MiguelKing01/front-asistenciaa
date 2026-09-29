@@ -222,3 +222,16 @@
     overflow-x: auto;
   }
 }
+
+@media (max-width: 560px) {
+  .asignaciones-list { overflow: visible; }
+  .asignaciones-table, .asignaciones-table tbody, .asignaciones-table tr, .asignaciones-table td { display: block; width: 100%; }
+  .asignaciones-table { border-collapse: separate; border-spacing: 0; min-width: 0; }
+  .asignaciones-table thead { clip: rect(0 0 0 0); height: 1px; overflow: hidden; position: absolute; width: 1px; }
+  .asignaciones-table tr { background: #fff; border: 1px solid #e1e7f0; border-radius: 0.6rem; margin-bottom: 0.75rem; padding: 0.35rem 0; }
+  .asignaciones-table td { align-items: start; display: grid; gap: 0.75rem; grid-template-columns: minmax(6rem, 40%) minmax(0, 1fr); padding: 0.65rem 0.8rem; white-space: normal; word-break: break-word; }
+  .asignaciones-table td::before { color: #647187; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; }
+  .asignaciones-table td:nth-child(1)::before { content: 'Alumno'; }
+  .asignaciones-table td:nth-child(2)::before { content: 'Grupo'; }
+  .asignaciones-table td:nth-child(3)::before { content: 'Fecha'; }
+}

@@ -45,7 +45,7 @@ button {
   }
 }
 
-@media (max-width: 760px) {
+@media (min-width: 561px) and (max-width: 760px) {
   /* Cada contenedor que tenga una tabla se convierte en su área de desplazamiento.
      Así la tabla puede conservar sus columnas sin ensanchar la página completa. */
   main :has(> table) {

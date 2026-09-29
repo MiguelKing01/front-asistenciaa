@@ -472,3 +472,16 @@ flex-direction: column-reverse;
 width: 100%;
 }
 }
+
+@media (max-width: 560px) {
+  .attendance-list { overflow: visible; }
+  .attendance-table, .attendance-table tbody, .attendance-table tr, .attendance-table td { display: block; width: 100%; }
+  .attendance-table { border-collapse: separate; border-spacing: 0; min-width: 0; }
+  .attendance-table thead { clip: rect(0 0 0 0); height: 1px; overflow: hidden; position: absolute; width: 1px; }
+  .attendance-table tr { background: #fff; border: 1px solid #e1e7f0; border-radius: 0.6rem; margin-bottom: 0.75rem; padding: 0.35rem 0; }
+  .attendance-table td { align-items: start; display: grid; gap: 0.75rem; grid-template-columns: minmax(6rem, 40%) minmax(0, 1fr); padding: 0.65rem 0.8rem; white-space: normal; word-break: break-word; }
+  .attendance-table td::before { color: #647187; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; }
+  .attendance-table td:nth-child(1)::before { content: 'Estudiante'; }
+  .attendance-table td:nth-child(2)::before { content: 'Correo'; }
+  .attendance-table td:nth-child(3)::before { content: 'Carrera'; }
+}
