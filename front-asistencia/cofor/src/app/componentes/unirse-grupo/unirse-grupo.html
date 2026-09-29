@@ -23,6 +23,9 @@
         <label class="form-label" for="codigo-acceso">Código de acceso</label>
         <input id="codigo-acceso" class="form-control" type="text" placeholder="Ej. GRP-2024-A" [(ngModel)]="codigoAcceso" name="codigoAcceso" required>
         <section class="form-actions">
+          <button class="btn btn-outline-primary add-button" type="button" (click)="openQrModal()">
+            Escanear QR
+          </button>
           <button class="btn btn-primary add-button" type="submit" [disabled]="loading()">
             @if (loading()) {
               <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
@@ -40,6 +43,33 @@
         <p class="action-message" role="status">{{ actionMessage() }}</p>
       }
     </section>
+
+    @if (showQrModal()) {
+      <div class="qr-modal-overlay" (click)="closeQrModal()">
+        <div class="qr-modal" role="dialog" aria-modal="true" aria-labelledby="qr-modal-title" (click)="$event.stopPropagation()">
+          <header class="qr-modal-header">
+            <h3 id="qr-modal-title">Escanear código QR</h3>
+            <button class="qr-modal-close" type="button" (click)="closeQrModal()" aria-label="Cerrar">×</button>
+          </header>
+          <div class="qr-modal-body">
+            <div class="qr-scan-area">
+              <div class="qr-scan-frame">
+                <span class="qr-scan-corner tl"></span>
+                <span class="qr-scan-corner tr"></span>
+                <span class="qr-scan-corner bl"></span>
+                <span class="qr-scan-corner br"></span>
+                <p class="qr-scan-text">Apunta la cámara al código QR</p>
+              </div>
+            </div>
+            <p class="qr-scan-hint">El código se llenará automáticamente al escanear.</p>
+          </div>
+          <footer class="qr-modal-footer">
+            <button class="btn btn-outline-secondary" type="button" (click)="closeQrModal()">Cancelar</button>
+            <button class="btn btn-primary" type="button" (click)="simulateScan()">Simular escaneo</button>
+          </footer>
+        </div>
+      </div>
+    }
 
     <section class="mis-grupos-section">
       <h2>Mis grupos</h2>

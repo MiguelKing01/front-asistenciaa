@@ -1,0 +1,60 @@
+<main class="explorar-page">
+  <app-menu></app-menu>
+
+  <section class="explorar-content" aria-labelledby="explorar-title">
+    <header class="content-header">
+      <section>
+        <p class="eyebrow">Gestión académica</p>
+        <h1 id="explorar-title">Explorar grupos</h1>
+      </section>
+      <section class="account">
+        <span class="account-avatar">MT</span>
+        <span>
+          <strong>Mariana Torres</strong>
+          <small>Alumno</small>
+        </span>
+      </section>
+    </header>
+
+    <section class="explorar-toolbar">
+      <div>
+        <h2>Grupos disponibles</h2>
+        <p>Explora los grupos disponibles y únete con un código de acceso.</p>
+      </div>
+    </section>
+
+    <section class="grupos-grid" aria-label="Lista de grupos disponibles">
+      @for (grupo of grupos; track grupo.id) {
+        <article class="grupo-card">
+          <header class="grupo-card-header">
+            <span class="grupo-icon" aria-hidden="true">📚</span>
+            <h3>{{ grupo.nombre }}</h3>
+          </header>
+          <p class="grupo-programa">{{ grupo.programa }}</p>
+          <hr class="grupo-divider">
+          <ul class="grupo-details">
+            <li>
+              <span class="detail-icon" aria-hidden="true">📖</span>
+              <span>Materia: <strong>{{ grupo.materia }}</strong></span>
+            </li>
+            <li>
+              <span class="detail-icon" aria-hidden="true">🎓</span>
+              <span>Promoción: <strong>{{ grupo.promocion }}</strong></span>
+            </li>
+            <li>
+              <span class="detail-icon" aria-hidden="true">🏷️</span>
+              <span>Código: <strong>{{ grupo.codigo }}</strong></span>
+            </li>
+          </ul>
+          <button
+            class="btn btn-primary grupo-join"
+            type="button"
+            [routerLink]="['/unirse-grupo']"
+          >
+            Unirse al grupo →
+          </button>
+        </article>
+      }
+    </section>
+  </section>
+</main>

@@ -31,6 +31,7 @@ export class Grupos {
   protected readonly creating = signal(false);
   protected readonly confirmingDelete = signal(false);
   protected readonly actionMessage = signal('');
+  protected readonly showQrModal = signal(false);
 
   protected readonly filteredGroups = computed(() => {
     const term = this.search().trim().toLowerCase();
@@ -108,5 +109,19 @@ export class Grupos {
     this.selectedId.set(null);
     this.confirmingDelete.set(false);
     this.actionMessage.set('Grupo eliminado correctamente.');
+  }
+
+  protected selectedGroupCode(): string {
+    const id = this.selectedId();
+    if (id === null) return '';
+    return this.grupos().find((g) => g.group_id === id)?.group_acces_code ?? '';
+  }
+
+  protected openQrModal(): void {
+    this.showQrModal.set(true);
+  }
+
+  protected closeQrModal(): void {
+    this.showQrModal.set(false);
   }
 }

@@ -236,3 +236,151 @@
     overflow-x: auto;
   }
 }
+
+/* ── QR Modal ──────────────────────────────────────────────────── */
+.qr-modal-overlay {
+  align-items: center;
+  background: rgba(15, 30, 60, 0.5);
+  display: flex;
+  inset: 0;
+  justify-content: center;
+  padding: 1.5rem;
+  position: fixed;
+  z-index: 1050;
+}
+
+.qr-modal {
+  animation: rise 0.2s ease-out;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 20px 52px rgba(20, 45, 89, 0.25);
+  max-width: 420px;
+  width: 100%;
+}
+
+.qr-modal-header {
+  align-items: center;
+  border-bottom: 1px solid #e9edf3;
+  display: flex;
+  justify-content: space-between;
+  padding: 1.1rem 1.5rem;
+}
+
+.qr-modal-header h3 {
+  color: #1b315a;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.qr-modal-close {
+  background: transparent;
+  border: 0;
+  color: #718096;
+  cursor: pointer;
+  font-size: 1.5rem;
+  line-height: 1;
+  padding: 0.25rem;
+}
+
+.qr-modal-close:hover {
+  color: var(--co-red);
+}
+
+.qr-modal-body {
+  padding: 1.5rem;
+}
+
+.qr-scan-area {
+  align-items: center;
+  background: #f7f9fc;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  min-height: 220px;
+  padding: 1.5rem;
+}
+
+.qr-scan-frame {
+  border: 2px dashed #b0bdd0;
+  border-radius: 10px;
+  height: 180px;
+  position: relative;
+  width: 180px;
+}
+
+.qr-scan-corner {
+  border-color: var(--co-blue);
+  border-style: solid;
+  height: 24px;
+  position: absolute;
+  width: 24px;
+}
+
+.qr-scan-corner.tl {
+  border-radius: 4px 0 0 0;
+  border-width: 3px 0 0 3px;
+  left: -2px;
+  top: -2px;
+}
+
+.qr-scan-corner.tr {
+  border-radius: 0 4px 0 0;
+  border-width: 3px 3px 0 0;
+  right: -2px;
+  top: -2px;
+}
+
+.qr-scan-corner.bl {
+  border-radius: 0 0 0 4px;
+  border-width: 0 0 3px 3px;
+  bottom: -2px;
+  left: -2px;
+}
+
+.qr-scan-corner.br {
+  border-radius: 0 0 4px 0;
+  border-width: 0 3px 3px 0;
+  bottom: -2px;
+  right: -2px;
+}
+
+.qr-scan-text {
+  color: #718096;
+  font-size: 0.82rem;
+  margin: 0;
+  text-align: center;
+}
+
+.qr-scan-hint {
+  color: #8390a3;
+  font-size: 0.78rem;
+  margin: 1rem 0 0;
+  text-align: center;
+}
+
+.qr-modal-footer {
+  border-top: 1px solid #e9edf3;
+  display: flex;
+  gap: 0.65rem;
+  justify-content: flex-end;
+  padding: 1rem 1.5rem;
+}
+
+.qr-modal-footer .btn {
+  border-radius: 7px;
+  font-weight: 600;
+  min-height: 40px;
+  padding: 0.5rem 1rem;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

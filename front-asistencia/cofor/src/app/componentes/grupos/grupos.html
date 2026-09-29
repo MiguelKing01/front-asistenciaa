@@ -72,6 +72,7 @@
           <span>Grupo seleccionado</span>
           <section>
             <button class="btn btn-outline-primary btn-sm" type="button" (click)="editSelected()">Editar</button>
+            <button class="btn btn-outline-success btn-sm" type="button" (click)="openQrModal()">Generar QR</button>
             <button class="btn btn-outline-danger btn-sm" type="button" (click)="deleteSelected()">Eliminar</button>
           </section>
         </section>
@@ -123,6 +124,34 @@
           </tbody>
         </table>
       </section>
+    }
+
+    @if (showQrModal()) {
+      <div class="qr-modal-overlay" (click)="closeQrModal()">
+        <div class="qr-modal" role="dialog" aria-modal="true" aria-labelledby="qr-modal-title" (click)="$event.stopPropagation()">
+          <header class="qr-modal-header">
+            <h3 id="qr-modal-title">Código QR del grupo</h3>
+            <button class="qr-modal-close" type="button" (click)="closeQrModal()" aria-label="Cerrar">×</button>
+          </header>
+          <div class="qr-modal-body">
+            <div class="qr-display">
+              <div class="qr-placeholder">
+                <div class="qr-pattern">
+                  <span></span><span></span><span></span>
+                  <span></span><span></span><span></span>
+                  <span></span><span></span><span></span>
+                </div>
+              </div>
+              <p class="qr-code-label">Código: <strong>{{ selectedGroupCode() }}</strong></p>
+            </div>
+            <p class="qr-hint">Comparte este código QR con los alumnos para que se unan al grupo.</p>
+          </div>
+          <footer class="qr-modal-footer">
+            <button class="btn btn-outline-secondary" type="button" (click)="closeQrModal()">Cerrar</button>
+            <button class="btn btn-primary" type="button">Descargar QR</button>
+          </footer>
+        </div>
+      </div>
     }
   </section>
 </main>

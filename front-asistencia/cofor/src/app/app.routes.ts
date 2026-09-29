@@ -11,6 +11,7 @@ import { CrearAsistencia } from './componentes/crear-asistencia/crear-asistencia
 import { Registrarse } from './componentes/registrarse/registrarse';
 import { Grupos } from './componentes/grupos/grupos';
 import { Promociones } from './componentes/promociones/promociones';
+import { ExplorarGrupos } from './componentes/explorar-grupos/explorar-grupos';
 
 export const routes: Routes = [
     {
@@ -60,6 +61,10 @@ export const routes: Routes = [
     {
         path: 'unirse-grupo',
         component: UnirseGrupo
+    },
+    {
+        path: 'explorar-grupos',
+        component: ExplorarGrupos
     },
     {
         path: 'asignar-alumno',

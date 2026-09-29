@@ -17,6 +17,7 @@ export class UnirseGrupo {
   protected readonly loading = signal(false);
   protected readonly actionMessage = signal('');
   protected readonly errorMsg = signal('');
+  protected readonly showQrModal = signal(false);
 
   protected unirseGrupo(): void {
     const codigo = this.codigoAcceso().trim();
@@ -30,5 +31,19 @@ export class UnirseGrupo {
 
     // TODO: Llamar al backend para unirse al grupo
     // this.grupoService.unirseGrupo(codigo).subscribe(...)
+  }
+
+  protected openQrModal(): void {
+    this.showQrModal.set(true);
+  }
+
+  protected closeQrModal(): void {
+    this.showQrModal.set(false);
+  }
+
+  protected simulateScan(): void {
+    this.codigoAcceso.set('GRP-2026-A');
+    this.showQrModal.set(false);
+    this.actionMessage.set('Código escaneado correctamente.');
   }
 }
