@@ -1,5 +1,6 @@
 import { Component, computed, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { Menu } from '../menu/menu';
 
 interface Group {
   group_id: number;
@@ -11,7 +12,7 @@ interface Group {
 
 @Component({
   selector: 'app-grupos',
-  imports: [RouterLink],
+  imports: [RouterLink, Menu],
   templateUrl: './grupos.html',
   styleUrl: './grupos.css',
 })

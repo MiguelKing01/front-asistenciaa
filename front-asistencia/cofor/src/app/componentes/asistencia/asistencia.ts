@@ -2,10 +2,11 @@ import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { AsistenciaService } from '../../services/asistenciaService';
 import { AsistenciaModel } from '../../models/Asistencia';
+import { Menu } from '../menu/menu';
 
 @Component({
   selector: 'app-asistencia',
-  imports: [RouterLink],
+  imports: [RouterLink, Menu],
   templateUrl: './asistencia.html',
   styleUrl: './asistencia.css',
 })

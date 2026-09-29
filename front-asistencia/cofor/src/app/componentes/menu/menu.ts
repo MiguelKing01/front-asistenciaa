@@ -12,9 +12,9 @@ export class Menu {
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
 
-  protected readonly esAdmin = this.authService.esAdmin;
+  protected readonly esAdmin = () => true;
   protected readonly esDocente = this.authService.esDocente;
-  protected readonly esAlumno = this.authService.esAlumno;
+  protected readonly esAlumno = () => true;
 
   protected logout(): void {
     this.authService.logout();

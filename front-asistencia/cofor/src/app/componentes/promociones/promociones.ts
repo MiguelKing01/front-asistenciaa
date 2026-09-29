@@ -1,5 +1,6 @@
 import { Component, computed, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { Menu } from '../menu/menu';
 
 interface Promotion {
   promotion_id: number;
@@ -9,7 +10,7 @@ interface Promotion {
 
 @Component({
   selector: 'app-promociones',
-  imports: [RouterLink],
+  imports: [RouterLink, Menu],
   templateUrl: './promociones.html',
   styleUrl: './promociones.css',
 })

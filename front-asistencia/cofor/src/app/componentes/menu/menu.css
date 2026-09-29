@@ -72,6 +72,10 @@
   color: var(--co-red);
 }
 
+img {
+    margin: 10px 0 20px 0;
+}
+
 @media (max-width: 760px) {
   .side-menu {
     border-bottom: 1px solid #e5eaf2;

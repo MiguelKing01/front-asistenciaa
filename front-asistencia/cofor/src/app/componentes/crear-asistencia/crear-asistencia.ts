@@ -1,11 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
+import { Menu } from '../menu/menu';
 import { GruposModel } from '../../models/Grupos';
 import { GruposService } from '../../services/grupos-service';
 
 @Component({
   selector: 'app-crear-asistencia',
-  imports: [RouterLink],
+  imports: [RouterLink, Menu],
   templateUrl: './crear-asistencia.html',
   styleUrl: './crear-asistencia.css',
 })

@@ -1,15 +1,16 @@
 import { Component, computed, EventEmitter, inject, Output, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { Menu } from '../menu/menu';
 import { SesionesService } from '../../services/sesiones-service';
 import { SesionesModel } from '../../models/Sesiones';
 import { GruposService } from '../../services/grupos-service';
 import { GruposModel } from '../../models/Grupos';
 
-@Component({
-  selector: 'app-sesiones',
-  imports: [RouterLink],
-  templateUrl: './sesiones.html',
-  styleUrl: './sesiones.css',
+@Component({ 
+  selector: 'app-sesiones', 
+  imports: [RouterLink, Menu], 
+  templateUrl: './sesiones.html', 
+  styleUrl: './sesiones.css' 
 })
 export class Sesiones {
   private sesionesService = inject(SesionesService);
