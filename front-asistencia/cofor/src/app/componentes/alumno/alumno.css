@@ -1,0 +1,237 @@
+.alumno-page {
+  --co-blue: #153f87;
+  --co-red: #d82143;
+  background: #f5f7fb;
+  color: #28364e;
+  display: grid;
+  grid-template-columns: 238px minmax(0, 1fr);
+  min-height: 100vh;
+}
+
+.alumno-content {
+  margin: 0 auto;
+  max-width: 1170px;
+  padding: 2.2rem clamp(1.4rem, 4vw, 4rem);
+  width: 100%;
+}
+
+.content-header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2.3rem;
+}
+
+.eyebrow {
+  color: #7b879a;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  margin: 0 0 0.35rem;
+  text-transform: uppercase;
+}
+
+.content-header h1 {
+  color: #1b315a;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.7px;
+  margin: 0;
+}
+
+.account {
+  align-items: center;
+  display: flex;
+  gap: 0.7rem;
+}
+
+.account-avatar {
+  align-items: center;
+  background: var(--co-blue);
+  border-radius: 50%;
+  color: #fff;
+  display: inline-flex;
+  font-size: 0.76rem;
+  font-weight: 700;
+  height: 38px;
+  justify-content: center;
+  width: 38px;
+}
+
+.account strong,
+.account small {
+  display: block;
+}
+
+.account strong {
+  color: #34435d;
+  font-size: 0.84rem;
+}
+
+.account small {
+  color: #8390a3;
+  font-size: 0.74rem;
+}
+
+.alumno-card {
+  background: #fff;
+  border: 1px solid #e1e7f0;
+  border-radius: 12px;
+  display: grid;
+  gap: 1.5rem;
+  max-width: 700px;
+  padding: 2rem;
+}
+
+.alumno-avatar {
+  align-items: center;
+  background: var(--co-blue);
+  border-radius: 50%;
+  color: #fff;
+  display: flex;
+  font-size: 2rem;
+  font-weight: 700;
+  height: 90px;
+  justify-content: center;
+  width: 90px;
+}
+
+.alumno-info h2 {
+  color: #1b315a;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 0 0.3rem;
+}
+
+.alumno-email {
+  color: #718096;
+  font-size: 0.9rem;
+  margin: 0 0 1.5rem;
+}
+
+.alumno-details {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0;
+}
+
+.detail-row {
+  border-bottom: 1px solid #e9edf3;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 0.75rem;
+}
+
+.detail-row dt {
+  color: #718096;
+  font-size: 0.84rem;
+}
+
+.detail-row dd {
+  color: #28364e;
+  font-size: 0.84rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.status {
+  background: #e8f5ed;
+  border-radius: 20px;
+  color: #267446;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.28rem 0.6rem;
+}
+
+.edit-button {
+  --bs-btn-bg: var(--co-blue);
+  --bs-btn-border-color: var(--co-blue);
+  --bs-btn-hover-bg: #102f68;
+  --bs-btn-hover-border-color: #102f68;
+  border-radius: 7px;
+  font-weight: 600;
+  justify-self: start;
+  min-height: 44px;
+}
+
+.edit-form {
+  background: #fff;
+  border: 1px solid #e1e7f0;
+  border-radius: 10px;
+  display: grid;
+  gap: 0.65rem;
+  max-width: 650px;
+  padding: 1.7rem;
+}
+
+.form-title {
+  margin-bottom: 0.5rem;
+}
+
+.form-title h2 {
+  color: #1b315a;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0 0 0.3rem;
+}
+
+.form-title p {
+  color: #718096;
+  font-size: 0.86rem;
+  margin: 0;
+}
+
+.form-label {
+  color: #4e5d73;
+  font-size: 0.84rem;
+  font-weight: 600;
+  margin-bottom: 0.15rem;
+}
+
+.form-actions {
+  display: flex;
+  gap: 0.65rem;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.action-message {
+  background: #e8f5ed;
+  border: 1px solid #bde1c8;
+  border-radius: 8px;
+  color: #267446;
+  font-size: 0.83rem;
+  margin: 1rem 0 0;
+  max-width: 700px;
+  padding: 0.7rem 0.9rem;
+}
+
+@media (max-width: 760px) {
+  .alumno-page {
+    grid-template-columns: 1fr;
+  }
+
+  .alumno-content {
+    padding-top: 1.7rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .content-header {
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .account {
+    display: none;
+  }
+
+  .alumno-card {
+    padding: 1.5rem;
+  }
+
+  .detail-row {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+}
