@@ -1,0 +1,78 @@
+<main class="asignar-page">
+  <app-menu />
+
+  <section class="asignar-content" aria-labelledby="asignar-title">
+    <header class="content-header">
+      <section>
+        <p class="eyebrow">Gestión académica</p>
+        <h1 id="asignar-title">Asignar alumnos a grupos</h1>
+      </section>
+      <section class="account">
+        <span class="account-avatar">UC</span>
+        <span>
+          <strong>Usuario UNITRACK</strong>
+          <small>Administrador</small>
+        </span>
+      </section>
+    </header>
+
+    <section class="asignar-form-section">
+      <h2>Asignar alumno a grupo</h2>
+      <p>Selecciona un alumno y un grupo para asignarlo.</p>
+      <form class="edit-form" (submit)="asignar(); $event.preventDefault()">
+        <label class="form-label" for="select-alumno">Alumno</label>
+        <select id="select-alumno" class="form-control" [(ngModel)]="selectedAlumno" name="selectedAlumno" required>
+          <option [ngValue]="null" disabled selected>Selecciona un alumno</option>
+          @for (alumno of alumnos(); track alumno.id) {
+            <option [ngValue]="alumno.id">{{ alumno.nombre }} - {{ alumno.correo }}</option>
+          }
+        </select>
+        <label class="form-label" for="select-grupo">Grupo</label>
+        <select id="select-grupo" class="form-control" [(ngModel)]="selectedGrupo" name="selectedGrupo" required>
+          <option [ngValue]="null" disabled selected>Selecciona un grupo</option>
+          @for (grupo of grupos(); track grupo.id) {
+            <option [ngValue]="grupo.id">{{ grupo.nombre }} ({{ grupo.codigo }})</option>
+          }
+        </select>
+        <section class="form-actions">
+          <button class="btn btn-primary add-button" type="submit">Asignar alumno</button>
+        </section>
+      </form>
+      @if (errorMsg()) {
+        <p class="error-message" role="alert">{{ errorMsg() }}</p>
+      }
+      @if (actionMessage()) {
+        <p class="action-message" role="status">{{ actionMessage() }}</p>
+      }
+    </section>
+
+    <section class="asignaciones-section">
+      <h2>Asignaciones realizadas</h2>
+      <p>Historial de alumnos asignados a grupos.</p>
+      <section class="asignaciones-list" aria-label="Lista de asignaciones">
+        <table class="asignaciones-table">
+          <thead>
+            <tr>
+              <th>Alumno</th>
+              <th>Grupo</th>
+              <th>Fecha</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (asignacion of asignaciones(); track asignacion.id) {
+              <tr>
+                <td>{{ asignacion.alumno }}</td>
+                <td>{{ asignacion.grupo }}</td>
+                <td>{{ asignacion.fecha }}</td>
+              </tr>
+            } @empty {
+              <tr>
+                <td colspan="3" class="empty-state">No hay asignaciones registradas.</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </section>
+    </section>
+  </section>
+</main>

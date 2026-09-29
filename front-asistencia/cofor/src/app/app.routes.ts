@@ -2,7 +2,10 @@ import { Routes } from '@angular/router';
 import { CrearSesion } from './componentes/crear-sesion/crear-sesion';
 import { Auth } from './componentes/auth/auth';
 import { Sesiones } from './componentes/sesiones/sesiones';
-import { Alumnos } from './componentes/alumnos/alumnos';
+import { Alumno } from './componentes/alumno/alumno';
+import { UnirseGrupo } from './componentes/unirse-grupo/unirse-grupo';
+import { AsignarAlumno } from './componentes/asignar-alumno/asignar-alumno';
+import { Usuarios } from './componentes/usuarios/usuarios';
 import { Asistencia } from './componentes/asistencia/asistencia';
 import { CrearAsistencia } from './componentes/crear-asistencia/crear-asistencia';
 import { Registrarse } from './componentes/registrarse/registrarse';
@@ -45,5 +48,21 @@ export const routes: Routes = [
     {
         path: 'promociones',
         component: Promociones
+    },
+    {
+        path: 'usuarios',
+        component: Usuarios
+    },
+    {
+        path: 'alumno',
+        component: Alumno
+    },
+    {
+        path: 'unirse-grupo',
+        component: UnirseGrupo
+    },
+    {
+        path: 'asignar-alumno',
+        component: AsignarAlumno
     }
 ];

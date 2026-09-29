@@ -1,0 +1,75 @@
+<main class="alumno-page">
+  <app-menu />
+
+  <section class="alumno-content" aria-labelledby="alumno-title">
+    <header class="content-header">
+      <section>
+        <p class="eyebrow">Mi perfil</p>
+        <h1 id="alumno-title">Datos del Alumno</h1>
+      </section>
+      <section class="account">
+        <span class="account-avatar">MT</span>
+        <span>
+          <strong>Mariana Torres</strong>
+          <small>Alumno</small>
+        </span>
+      </section>
+    </header>
+
+    @if (alumno(); as a) {
+      @if (editing()) {
+        <form class="edit-form" (submit)="saveAlumno(firstName.value, lastName.value, email.value); $event.preventDefault()">
+          <section class="form-title">
+            <h2>Editar datos</h2>
+            <p>Actualiza tu información personal.</p>
+          </section>
+          <label class="form-label" for="edit-firstName">Nombre</label>
+          <input #firstName id="edit-firstName" class="form-control" [value]="a.first_name" required>
+          <label class="form-label" for="edit-lastName">Apellido</label>
+          <input #lastName id="edit-lastName" class="form-control" [value]="a.last_name" required>
+          <label class="form-label" for="edit-email">Correo institucional</label>
+          <input #email id="edit-email" class="form-control" type="email" [value]="a.email" required>
+          <section class="form-actions">
+            <button class="btn btn-outline-secondary" type="button" (click)="cancelEdit()">Cancelar</button>
+            <button class="btn btn-primary add-button" type="submit">Guardar cambios</button>
+          </section>
+        </form>
+      } @else {
+        <section class="alumno-card">
+          <section class="alumno-avatar">
+            <span>{{ a.first_name[0] }}{{ a.last_name[0] }}</span>
+          </section>
+          <section class="alumno-info">
+            <h2>{{ a.first_name }} {{ a.last_name }}</h2>
+            <p class="alumno-email">{{ a.email }}</p>
+            <dl class="alumno-details">
+              <div class="detail-row">
+                <dt>Código de estudiante</dt>
+                <dd>{{ a.codigo_estudiante }}</dd>
+              </div>
+              <div class="detail-row">
+                <dt>Programa académico</dt>
+                <dd>{{ a.programa }}</dd>
+              </div>
+              <div class="detail-row">
+                <dt>Estado</dt>
+                <dd>
+                  <span class="status">{{ a.estado }}</span>
+                </dd>
+              </div>
+            </dl>
+          </section>
+          <button class="btn btn-primary edit-button" type="button" (click)="startEdit()">Editar datos</button>
+        </section>
+      }
+    } @else {
+      <section class="alumno-card">
+        <p class="empty-state">No se han cargado los datos del alumno.</p>
+      </section>
+    }
+
+    @if (actionMessage()) {
+      <p class="action-message" role="status">{{ actionMessage() }}</p>
+    }
+  </section>
+</main>

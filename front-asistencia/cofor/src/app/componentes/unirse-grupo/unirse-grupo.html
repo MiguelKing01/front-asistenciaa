@@ -1,0 +1,75 @@
+<main class="unirse-page">
+  <app-menu />
+
+  <section class="unirse-content" aria-labelledby="unirse-title">
+    <header class="content-header">
+      <section>
+        <p class="eyebrow">Gestión académica</p>
+        <h1 id="unirse-title">Unirse a un grupo</h1>
+      </section>
+      <section class="account">
+        <span class="account-avatar">MT</span>
+        <span>
+          <strong>Mariana Torres</strong>
+          <small>Alumno</small>
+        </span>
+      </section>
+    </header>
+
+    <section class="unirse-form-section">
+      <h2>Ingresa el código de acceso</h2>
+      <p>Solicita el código a tu docente para unirte al grupo.</p>
+      <form class="edit-form" (submit)="unirseGrupo(); $event.preventDefault()">
+        <label class="form-label" for="codigo-acceso">Código de acceso</label>
+        <input id="codigo-acceso" class="form-control" type="text" placeholder="Ej. GRP-2024-A" [(ngModel)]="codigoAcceso" name="codigoAcceso" required>
+        <section class="form-actions">
+          <button class="btn btn-primary add-button" type="submit" [disabled]="loading()">
+            @if (loading()) {
+              <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+              Uniendo...
+            } @else {
+              Unirse al grupo
+            }
+          </button>
+        </section>
+      </form>
+      @if (errorMsg()) {
+        <p class="error-message" role="alert">{{ errorMsg() }}</p>
+      }
+      @if (actionMessage()) {
+        <p class="action-message" role="status">{{ actionMessage() }}</p>
+      }
+    </section>
+
+    <section class="mis-grupos-section">
+      <h2>Mis grupos</h2>
+      <p>Estos son los grupos a los que ya perteneces.</p>
+      <section class="grupos-list" aria-label="Lista de mis grupos">
+        <table class="grupos-table">
+          <thead>
+            <tr>
+              <th>Código</th>
+              <th>Nombre</th>
+              <th>Programa</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (grupo of misGrupos(); track grupo.id) {
+              <tr>
+                <td>
+                  <span class="group-badge">{{ grupo.codigo }}</span>
+                </td>
+                <td>{{ grupo.nombre }}</td>
+                <td>{{ grupo.programa }}</td>
+              </tr>
+            } @empty {
+              <tr>
+                <td colspan="3" class="empty-state">No perteneces a ningún grupo aún.</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </section>
+    </section>
+  </section>
+</main>
