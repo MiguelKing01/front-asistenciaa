@@ -31,7 +31,7 @@ export const routes: Routes = [
         component: Asistencia
     },
     {
-        path: 'crear-asistencia',
+        path: 'crear-asistencia/:id_group',
         component: CrearAsistencia
     },
     {

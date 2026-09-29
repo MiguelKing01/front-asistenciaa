@@ -1,199 +1,99 @@
 <main class="companies-page">
   <aside class="companies-menu" aria-label="Menú principal">
-    <a class="companies-brand" href="#empresas">
-      UNI<span>TRACK</span>
-    </a>
-<nav aria-label="Secciones de UNITRACK">
-  <button class="company-link" type="button">
-    Alumnos
-  </button>
+    <a class="companies-brand" href="#empresas"> UNI<span>TRACK</span> </a>
+    <nav aria-label="Secciones de UNITRACK">
+      <button class="company-link" type="button">Alumnos</button>
 
-  <button class="company-link" type="button" routerLink="/sesiones">
-    Sesiones
-  </button>
+      <button class="company-link" type="button" routerLink="/sesiones">Sesiones</button>
 
-  <button
-    class="company-link active"
-    type="button"
-    routerLink="/asistencia"
-  >
-    Asistencia
-  </button>
+      <button class="company-link active" type="button" routerLink="/asistencia">Asistencia</button>
 
-  <button class="company-link" type="button">
-    Entrega
-  </button>
-</nav>
+      <button class="company-link" type="button">Entrega</button>
+    </nav>
 
-<button class="company-logout" type="button">
-  Cerrar sesión
-</button>
-
+    <button class="company-logout" type="button">Cerrar sesión</button>
   </aside>
 
   <section class="companies-content" aria-labelledby="companies-title">
     <header class="companies-header">
       <section>
-        <p class="companies-eyebrow">
-          Gestión de asistencia &gt; Registrar asistencia
+        <p class="companies-eyebrow">Gestión de asistencia &gt; Registrar asistencia</p>
+
+        <h1 id="companies-title">Registrar asistencia</h1>
+      </section>
+
+      <section class="companies-account">
+        <span>KD</span>
+
+        <p>
+          <strong>Usuario UNITRACK</strong>
+          <small>Kellyn Delgado</small>
         </p>
+      </section>
+    </header>
 
-    <h1 id="companies-title">
-      Registrar asistencia
-    </h1>
-  </section>
+    <form class="company-form">
+      <section>
+        <h2>Registrar asistencia</h2>
 
-  <section class="companies-account">
-    <span>KD</span>
+        <p>Selecciona la sesión y registra la asistencia de los estudiantes.</p>
+      </section>
 
-    <p>
-      <strong>Usuario UNITRACK</strong>
-      <small>Kellyn Delgado</small>
-    </p>
-  </section>
-</header>
+      <label class="form-label" for="attendance-session"> Sesión </label>
 
-<form class="company-form">
-  <section>
-    <h2>Registrar asistencia</h2>
+      <select id="attendance-session" class="form-control">
+        <option value="1">16A · Ingeniería de software · Apps Móviles · 14/09/2026</option>
 
-    <p>
-      Selecciona la sesión y registra la asistencia de los estudiantes.
-    </p>
-  </section>
+        <option value="2">16A · Ingeniería de software · Software Design · 15/09/2026</option>
+      </select>
 
-  <label class="form-label" for="attendance-session">
-    Sesión
-  </label>
+      <section class="attendance-section">
+        <label class="form-label"> Lista de estudiantes </label>
 
-  <select
-    id="attendance-session"
-    class="form-control"
-  >
-    <option value="1">
-      16A · Ingeniería de software · Apps Móviles · 14/09/2026
-    </option>
+        <div class="attendance-list">
+          <table class="attendance-table">
+            <thead>
+              <tr>
+                <th>Estudiante</th>
+                <th>Correo</th>
+                <th>Carrera</th>
+              </tr>
+            </thead>
 
-    <option value="2">
-      16A · Ingeniería de software · Software Design · 15/09/2026
-    </option>
-    
-  </select>
+            <tbody>
+              @for (usuario of usuariosGrupo; track usuario.user_id) {
+                <tr>
+                  <td>
+                    <strong> {{ usuario.user_first_name }} {{ usuario.user_last_name }} </strong>
+                  </td>
 
-  <section class="attendance-section">
-    <label class="form-label">
-      Lista de estudiantes
-    </label>
+                  <td>
+                    {{ usuario.user_email }}
+                  </td>
 
-    <div class="attendance-list">
-      <table class="attendance-table">
-        <thead>
-          <tr>
-            <th>Estudiante</th>
-            <th>Documento</th>
-            <th>Asistencia</th>
-          </tr>
-        </thead>
+                  <td>
+                    {{ usuario.Program.name }}
+                  </td>
 
-        <tbody>
-          <tr>
-            <td>
-              <strong>Juan Pérez</strong>
-            </td>
+                  <td>
+                    <button class="attendance-button" type="button">Marcar asistencia</button>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </section>
 
-            <td>
-              1234567890
-            </td>
+      <section class="company-form-actions">
+        <button class="btn btn-outline-secondary" type="button" routerLink="/sesiones">
+          Cancelar
+        </button>
 
-            <td>
-              <button
-                class="attendance-button"
-                type="button"
-              >
-                Marcar asistencia
-              </button>
-            </td>
-          </tr>
-
-          <tr>
-            <td>
-              <strong>María González</strong>
-            </td>
-
-            <td>
-              1098765432
-            </td>
-
-            <td>
-              <button
-                class="attendance-button"
-                type="button"
-              >
-                Marcar asistencia
-              </button>
-            </td>
-          </tr>
-
-          <tr>
-            <td>
-              <strong>Carlos Rodríguez</strong>
-            </td>
-
-            <td>
-              1023456789
-            </td>
-
-            <td>
-              <button
-                class="attendance-button"
-                type="button"
-              >
-                Marcar asistencia
-              </button>
-            </td>
-          </tr>
-
-          <tr>
-            <td>
-              <strong>Ana Martínez</strong>
-            </td>
-
-            <td>
-              1012345678
-            </td>
-
-            <td>
-              <button
-                class="attendance-button"
-                type="button"
-              >
-                Marcar asistencia
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <section class="company-form-actions">
-    <button
-      class="btn btn-outline-secondary"
-      type="button"
-      routerLink="/asistencia"
-    >
-      Cancelar
-    </button>
-
-    <button
-      class="btn btn-primary company-add"
-      type="button"
-      routerLink="/asistencia"
-    >
-      Guardar asistencia
-    </button>
-  </section>
-</form>
-
+        <button class="btn btn-primary company-add" type="button" routerLink="/sesiones">
+          Guardar asistencia
+        </button>
+      </section>
+    </form>
   </section>
 </main>

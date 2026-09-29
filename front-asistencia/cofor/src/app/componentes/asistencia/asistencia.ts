@@ -39,7 +39,7 @@ export class Asistencia {
 
     this.asistenciaService.getAttendanceById(7).subscribe({
       next: (data) => {
-        this.as istencia2 = data;
+        this.asistencia2 = data;
         console.log("Asistencia por ID 2");
         console.log(this.asistencia2);
       },
