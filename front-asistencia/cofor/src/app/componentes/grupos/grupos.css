@@ -494,6 +494,11 @@
   width: 100%;
 }
 
+.group-qr-button {
+  justify-self: start;
+  margin-top: 0.2rem;
+}
+
 .group-card:hover {
   border-color: #9ebae7;
   box-shadow: 0 0.35rem 1rem rgb(21 63 135 / 10%);

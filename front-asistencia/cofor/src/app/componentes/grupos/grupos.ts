@@ -121,6 +121,11 @@ export class Grupos {
     this.showQrModal.set(true);
   }
 
+  protected openQrForGroup(id: number): void {
+    this.selectGrupo(id);
+    this.openQrModal();
+  }
+
   protected closeQrModal(): void {
     this.showQrModal.set(false);
   }

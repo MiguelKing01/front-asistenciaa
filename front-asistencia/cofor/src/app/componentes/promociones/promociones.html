@@ -23,9 +23,9 @@
           <p>Registra la información de la nueva promoción.</p>
         </section>
         <label class="form-label" for="new-name">Nombre de la promoción</label>
-        <input #name id="new-name" class="form-control" placeholder="Ej. 2026-A" required>
-        <label class="form-label" for="new-programs">ID Programa</label>
-        <input #programs id="new-programs" class="form-control" type="number" placeholder="ID del programa" required>
+        <input #name id="new-name" class="form-control" placeholder="Ej. 16A" required>
+        <label class="form-label" for="new-programs">Programa</label>
+        <input #programs id="new-programs" class="form-control" placeholder="Ej. Ingeniería de software" required>
         <section class="form-actions">
           <button class="btn btn-outline-secondary" type="button" (click)="cancelCreate()">Cancelar</button>
           <button class="btn btn-primary add-button" type="submit">Agregar promoción</button>
@@ -41,8 +41,8 @@
             </section>
             <label class="form-label" for="edit-name">Nombre de la promoción</label>
             <input #name id="edit-name" class="form-control" [value]="promo.promotion_name" required>
-            <label class="form-label" for="edit-programs">ID Programa</label>
-            <input #programs id="edit-programs" class="form-control" type="number" [value]="promo.id_programs" required>
+            <label class="form-label" for="edit-programs">Programa</label>
+            <input #programs id="edit-programs" class="form-control" [value]="promo.programName" required>
             <section class="form-actions">
               <button class="btn btn-outline-secondary" type="button" (click)="cancelEdit()">Cancelar</button>
               <button class="btn btn-primary add-button" type="submit">Guardar cambios</button>
@@ -84,32 +84,16 @@
       }
 
       <section class="promotions-list" aria-label="Lista de promociones">
-        <table class="promotions-table">
-          <thead>
-            <tr>
-              <th>Nombre</th>
-              <th>ID Programa</th>
-            </tr>
-          </thead>
-          <tbody>
-            @for (promo of filteredPromociones(); track promo.promotion_id) {
-              <tr
-                class="promotion-row"
-                [class.selected]="selectedId() === promo.promotion_id"
-                (click)="selectPromocion(promo.promotion_id)"
-              >
-                <td>
-                  <span class="promotion-badge">{{ promo.promotion_name }}</span>
-                </td>
-                <td>{{ promo.id_programs }}</td>
-              </tr>
-            } @empty {
-              <tr>
-                <td colspan="2" class="empty-state">No se encontraron promociones con esos criterios.</td>
-              </tr>
-            }
-          </tbody>
-        </table>
+        <div class="promotion-cards">
+          @for (promo of filteredPromociones(); track promo.promotion_id) {
+            <button type="button" class="promotion-card" [class.selected]="selectedId() === promo.promotion_id" (click)="selectPromocion(promo.promotion_id)">
+              <span class="promotion-badge">{{ promo.promotion_name }}</span>
+              <span class="promotion-card-detail"><span>Programa</span><strong>{{ promo.programName }}</strong></span>
+            </button>
+          } @empty {
+            <p class="empty-state">No se encontraron promociones con esos criterios.</p>
+          }
+        </div>
       </section>
     }
   </section>

@@ -72,7 +72,6 @@
           <span>Grupo seleccionado</span>
           <section>
             <button class="btn btn-outline-primary btn-sm" type="button" (click)="editSelected()">Editar</button>
-            <button class="btn btn-outline-success btn-sm" type="button" (click)="openQrModal()">Generar QR</button>
             <button class="btn btn-outline-danger btn-sm" type="button" (click)="deleteSelected()">Eliminar</button>
           </section>
         </section>
@@ -95,12 +94,15 @@
       <section class="groups-list" aria-label="Lista de grupos">
         <div class="groups-cards">
           @for (grupo of filteredGroups(); track grupo.group_id) {
-            <button type="button" class="group-card" [class.selected]="selectedId() === grupo.group_id" (click)="selectGrupo(grupo.group_id)">
+            <article class="group-card" [class.selected]="selectedId() === grupo.group_id" (click)="selectGrupo(grupo.group_id)">
               <span class="group-badge">{{ grupo.group_acces_code }}</span>
               <span class="group-card-detail"><span>Materia</span><strong>{{ grupo.subjectName }}</strong></span>
               <span class="group-card-detail"><span>Promoción</span><strong>{{ grupo.promotionName }}</strong></span>
               <span class="group-card-detail"><span>Programa</span><strong>{{ grupo.programName }}</strong></span>
-            </button>
+              @if (selectedId() === grupo.group_id) {
+                <button class="btn btn-outline-success btn-sm group-qr-button" type="button" (click)="$event.stopPropagation(); openQrForGroup(grupo.group_id)">Generar QR</button>
+              }
+            </article>
           } @empty {
             <p class="empty-state">No se encontraron grupos con esos criterios.</p>
           }
